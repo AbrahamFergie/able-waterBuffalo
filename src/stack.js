@@ -12,7 +12,7 @@ export default class Stack {
   }
 
   pop() {
-    return this.top > 0 ? this.element.splice(this.top, 1)[0] : null
+    return this.top > 0 ? this.element.splice(-1, 1)[0] : null
   }
 
   length() {return this.top}
