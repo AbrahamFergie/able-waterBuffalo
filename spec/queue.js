@@ -68,7 +68,7 @@ describe('Queue', () => {
   })
 
   context('length()', () => {
-    it.only('returns the number of elements in the queue', () => {
+    it('returns the number of elements in the queue', () => {
       const aQueue = new Queue()
       aQueue.enqueue( 'foo' )
       aQueue.enqueue( 'fooBar' )
