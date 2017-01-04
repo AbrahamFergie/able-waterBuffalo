@@ -7,8 +7,7 @@ export default class Stack {
   }
 
   push( data ) {
-    this.top++
-    this.element[ this.top ] = data
+    this.element[ this.top++ ] = data
   }
 
   pop() {
@@ -22,6 +21,6 @@ export default class Stack {
   }
 
   peek() {
-    return this.top > 0 ? this.element[this.top--] : null
+    return this.top > 0 ? this.element[this.top-1] : null
   }
 }
