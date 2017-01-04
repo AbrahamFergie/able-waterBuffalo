@@ -1,9 +1,8 @@
 'use strict'
 
 export default class Stack {
-  constructor( data ) {
+  constructor() {
     this.top = 0
-    this.data = data
     this.element = []
   }
 
