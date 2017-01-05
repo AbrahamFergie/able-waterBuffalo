@@ -77,7 +77,7 @@ describe('pQueue', () => {
   })
 
   context('length()', () => {
-    it('eturns the number of elements in the queue.', () => {
+    it('returns the number of elements in the queue.', () => {
       const thePQueue = new pQueue()
 
       thePQueue.enqueue({ priority: 12, data: 'foo' })
