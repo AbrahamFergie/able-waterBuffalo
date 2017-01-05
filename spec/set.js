@@ -155,11 +155,11 @@ describe('Set', () => {
   })
 
   context('subSet()', () => {
-    it.only('returns true if the set is a subset of otherSet or false if not.', () => {
+    it('returns true if the set is a subset of otherSet or false if not.', () => {
       const aSet = new Set([])
       const anotherSet = new Set([])
 
-      aSet.add(0423)
+      aSet.add(1423)
       aSet.add(8636)
       aSet.add(25968)
       anotherSet.add(4423)
@@ -171,15 +171,27 @@ describe('Set', () => {
 
       expect( aSet.subSet( anotherSet ) ).to.eql( false )
 
-      aSet.remove(0423)
-      aSet.remove(8636)
-      aSet.remove(25968)
-      aSet.add(4423)
-      aSet.add(7636)
-      aSet.add(90968)
+      const theSet = new Set([])
 
-      expect( aSet.subSet( anotherSet ) ).to.eql( true )
+      theSet.add(4423)
+      theSet.add(7636)
+      theSet.add(90968)
 
+      expect( theSet.subSet( anotherSet ) ).to.eql( true )
+
+    })
+  })
+
+  context('clone()', () => {
+    it.only('returns a cloned set.', () => {
+      const aSet = new Set([])
+
+      aSet.add('foo')
+      aSet.add('fooDoo')
+      aSet.add('fooBoo')
+      aSet.add('fooBar')
+
+      expect( aSet.clone() ).to.eql( aSet.sequence )
     })
   })
 })

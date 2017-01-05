@@ -2,7 +2,6 @@ export default class Set {
   constructor( sequence ) {
     this.index = 0
     this.sequence = sequence
-    this.contains()
   }
 
   add( data ) {
@@ -86,8 +85,25 @@ export default class Set {
     return this.sequence
   }
 
-  subSet() {
-    
+  subSet( data ) {
+    let counter = 0
+    for( let k = 0; k < this.index; k++ ){
+      for( let j = 0; j < data.size(); j++ ){
+        if( this.sequence[k] === data.sequence[j] ){
+          counter++
+        }
+      }
+    }
+    if( counter === this.index ){
+      return true
+    }else{ return false }
+  }
+
+  clone() {
+    const clonedSet = new Set(this.sequence)
+    clonedSet.index = this.index
+
+    return clonedSet.sequence
   }
 
 
