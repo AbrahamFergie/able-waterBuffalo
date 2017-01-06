@@ -62,18 +62,21 @@ export default class LinkedList {
   }
 
   find( data ) {
-    let currentNode = this.head
+    if(this.head){
+      let currentNode = this.head
 
-    while( currentNode.next ) {
-      // console.log(currentNode)
-      if( currentNode.data === data ){
-        return currentNode
-      } else {
-        currentNode = currentNode.next
+      while( currentNode.next ) {
+        // console.log(currentNode)
+        if( currentNode.data === data ){
+          return currentNode
+        } else {
+          currentNode = currentNode.next
+        }
       }
+      return -1
+    }else{
+      return -1
     }
-
-    return -1
   }
 
   insertFirst( data ) {
@@ -91,14 +94,59 @@ export default class LinkedList {
     let currentNode = this.head
 
     while( currentNode.next ) {
-      // console.log(currentNode)
       if( currentNode.data === data ){
         node.next = currentNode
         return node
       }
       currentNode = currentNode.next
     }
+    if( currentNode.data === data ){
+      node.next = currentNode
+      return node
+    }
   }
 
+  insertAfter( data, newData ) {
+    let node = new Node( newData )
+    let currentNode = this.head
+
+    while( currentNode.next ) {
+      if( currentNode.data === data ){
+        node.next = currentNode.next
+        currentNode.next = node
+        return node
+      }
+      currentNode = currentNode.next
+    }
+  }
+
+  remove() {
+    let nodeToRemove = this.getTailNode()
+    let currentNode = this.head
+
+    while( currentNode.next ){
+      if( currentNode.next.data === nodeToRemove.data ){
+        currentNode.next = null
+        this._length--
+        break
+      }
+      currentNode = currentNode.next
+    }
+  }
+
+  removeFirst() {
+    let currentNode = this.head
+
+    this.head = currentNode.next
+    this._length--
+  }
+
+  isEmpty() { return this._length === 0 }
+
   size() { return this._length }
+
+  clear() {
+    this.head = null
+    this._length = 0
+  }
 }

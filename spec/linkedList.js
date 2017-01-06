@@ -99,7 +99,7 @@ describe('LinkedList', () => {
   })
 
   context('insertBefore()', () => {
-    it.only('Inserts a node (with data "apples") before the first node containing "bananas"', () => {
+    it('Inserts a node (with data "apples") before the first node containing "bananas"', () => {
       const list = new LinkedList()
 
       list.insert('element')
@@ -115,4 +115,86 @@ describe('LinkedList', () => {
       // expect( list.size() ).to.eql( 6 )
     })
   })
+  context('insertAfter()', () => {
+    it('Inserts a node (with data "bananas") after the first node containing "apples"', () => {
+      const list = new LinkedList()
+
+      list.insert('element')
+      list.insert('other-element')
+      list.insert('other-elementals')
+      list.insert('apples')
+      list.insert('elementals')
+
+      // expect( list.size() ).to.eql( 5 )
+      expect( list.insertAfter('apples', 'bananas' ) ).to.eql(
+        { data:'bananas', next: { data:'elementals', next: null } }
+      )
+      // expect( list.size() ).to.eql( 6 )
+    })
+  })
+
+  context('remove()', () => {
+    it('Removes the tail node from the list', () => {
+      const list = new LinkedList()
+
+      list.insert('element')
+      list.insert('other-element')
+      list.insert('other-elementals')
+      list.insert('apples')
+      list.insert('elementals')
+
+      expect(() => list.remove() ).to.alter(() => list.size(), { from: 5, to: 4 } )
+      expect( list.find( 'elementals' ) ).to.eql( -1 )
+
+    })
+  })
+
+  context('removeFirst()', () => {
+    it('Removes the head node from the list', () => {
+      const list = new LinkedList()
+
+      list.insert('element')
+      list.insert('other-element')
+      list.insert('other-elementals')
+      list.insert('apples')
+      list.insert('elementals')
+
+      expect(() =>  list.removeFirst() ).to.alter(() =>  list.size(), { from: 5, to: 4 } )
+      expect( list.find( 'element' ) ).to.eql( -1 )
+
+    })
+  })
+
+  context('isEmpty()', () => {
+    it('Determines if the list is empty or not', () => {
+      const list = new LinkedList()
+
+      expect( list.isEmpty() ).to.eql( true )
+
+      list.insert('element')
+      list.insert('other-element')
+      list.insert('other-elementals')
+      list.insert('apples')
+      list.insert('elementals')
+
+      expect( list.isEmpty() ).to.eql( false )
+
+    })
+  })
+
+  context('clear()', () => {
+    it.only('Clears the list of all nodes/data', () => {
+      const list = new LinkedList()
+
+      list.insert('element')
+      list.insert('other-element')
+      list.insert('other-elementals')
+      list.insert('apples')
+      list.insert('elementals')
+
+      expect(() => list.clear() ).to.alter(() => list.size(), { from: 5, to: 0 })
+      expect( list.find( 'elementals' ) ).to.eql( -1 )
+    })
+  })
+
 })

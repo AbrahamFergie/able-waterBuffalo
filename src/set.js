@@ -5,7 +5,9 @@ export default class Set {
   }
 
   add( data ) {
-    this.sequence[ this.index++ ] = data
+    if( !this.sequence.contains( data ) ){
+      this.sequence[ this.index++ ] = data
+    }
   }
 
   isEmpty() {
