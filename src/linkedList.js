@@ -8,7 +8,7 @@ class Node {
   next() { return this.next }
 }
 
-export default class LinkedList {
+class LinkedList {
   constructor() {
     this.head = null
     this._length = 0
@@ -150,3 +150,5 @@ export default class LinkedList {
     this._length = 0
   }
 }
+
+export default {Node, LinkedList}
