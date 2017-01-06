@@ -5,28 +5,44 @@ export default class Set {
   }
 
   add( data ) {
-    return this.sequence[ this.index++ ] = data
+    this.sequence[ this.index++ ] = data
   }
 
   isEmpty() {
-    return this.index === 0 ? true : false
+    return this.index === 0
   }
 
   contains( data ) {
     for( let i = 0; i < this.index; i++ ){
       if(this.sequence[i] === data){
         return true
-      }else if( this.sequence[i + 1] === undefined ){
-        return false
+      // }else if( this.sequence[i + 1] === undefined ){
+      //   return false
       }
     }
+
+    return false
+  }
+
+  members() {
+    // let result = []
+    //
+    // let walker = this.front
+    //
+    // while( walker !== null ) {
+    //   result.push( walker.data )
+    //   walker = walker.next
+    // }
+    //
+    // return result
+    return [ ...this.sequence ]
   }
 
   remove( data ) {
-    for( let i = 0; i < this.index; i++ ) {
+    for( let i = 0; i < this.size(); i++ ) {
       if( this.sequence[i] === data ){
         this.sequence.splice( i, 1 )
-        return this.sequence
+        this.index --
       }
     }
   }
@@ -45,6 +61,16 @@ export default class Set {
   }
 
   union( data ) {
+    // const result = new Set([ ...this.sequence ])
+    //
+    // data.members().forEach( element => {
+    //   if( ! result.contains( element ) ) {
+    //     result.add( element )
+    //   }
+    // })
+    //
+    // return result
+
     for( let i = 0; i < data.size(); i++  ){
       this.sequence[ this.index++ ] = data.sequence[i]
     }
@@ -97,13 +123,17 @@ export default class Set {
     if( counter === this.index ){
       return true
     }else{ return false }
+
+    // return counter === this.index
   }
 
   clone() {
-    const clonedSet = new Set(this.sequence)
-    clonedSet.index = this.index
+    // const clonedSet = new Set(this.sequence)
+    // clonedSet.index = this.index
+    //
+    // return clonedSet.sequence
 
-    return clonedSet.sequence
+    return new Set([ ...this.sequence ])
   }
 
 

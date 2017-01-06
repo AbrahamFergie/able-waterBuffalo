@@ -13,40 +13,54 @@ describe('Set', () => {
     it('adds an element to the set.', () => {
       const aSet = new Set([])
 
-      aSet.add('foo')
-      aSet.add('fooDoo')
-      aSet.add('fooBoo')
-      aSet.add('fooBar')
-
-      expect( aSet.sequence ).to.eql( [ 'foo', 'fooDoo', 'fooBoo', 'fooBar' ] )
+      expect( () => aSet.add( 'foo' ) )
+        .to.alter( () => aSet.size(), { from: 0, to: 1 } )
 
     })
   })
 
-  context('isEmpty()', () => {
+  context('isEmptyTrue()', () => {
     it('returns true if the queue is empty or false if not.', () => {
       const aSet = new Set([])
       expect( aSet.isEmpty() ).to.eql( true )
-
-      aSet.add('foo')
-      aSet.add('fooDoo')
-      aSet.add('fooBoo')
-      aSet.add('fooBar')
-      expect( aSet.isEmpty() ).to.eql( false )
-
+      expect( () => aSet.isEmpty() ).to.alter( () => aSet.size(), { from: 0, to: 0 } )
     })
   })
 
-  context('contains()', () => {
+  context('isEmptyFalse()', () => {
+    it('returns true if the queue is empty or false if not.', () => {
+      const aSet = new Set([])
+
+      expect( aSet.size() ).to.eql( 0 )
+      for(let i = 0; i < 4; i++){
+        aSet.add('foo')
+      }
+      expect( aSet.isEmpty() ).to.eql( false )
+      expect( aSet.size() ).to.eql( 4 )
+    })
+  })
+
+  context('containsTrue()', () => {
     it('returns true the set contains the element or false if not.', () => {
       const aSet = new Set([])
 
-      aSet.add('foo')
-      aSet.add('fooDoo')
-      aSet.add('fooBoo')
-      aSet.add('fooBar')
+      for(let i = 0; i < 4; i++){
+        aSet.add('foo')
+      }
+      aSet.add( 'fooBoo' )
 
       expect( aSet.contains( 'fooBoo' ) ).to.eql( true )
+    })
+  })
+
+  context('containsFalse()', () => {
+    it('returns true the set contains the element or false if not.', () => {
+      const aSet = new Set([])
+
+      for(let i = 0; i < 4; i++){
+        aSet.add('foo')
+      }
+
       expect( aSet.contains( 'bob' ) ).to.eql( false )
     })
   })
@@ -60,7 +74,11 @@ describe('Set', () => {
       aSet.add('fooBoo')
       aSet.add('fooBar')
 
-      expect( aSet.remove( 'fooBoo' ) ).to.eql( [ 'foo', 'fooDoo', 'fooBar' ] )
+      expect( aSet.contains( 'fooBoo' ) ).to.eql(true)
+      expect( () => aSet.remove('fooBoo') )
+        .to.alter( () => aSet.size(), { from: 4, to: 3 } )
+      expect( aSet.contains( 'fooBoo' ) ).to.eql(false)
+
     })
   })
 
@@ -80,19 +98,13 @@ describe('Set', () => {
   context('size()', () => {
     it('returns the number of elements in the set.', () => {
       const aSet = new Set([])
+      const expectedSize = 8
 
+      for( let i = 0; i < expectedSize; i++ ) {
+        aSet.add( i )
+      }
 
-
-      aSet.add(1123)
-      aSet.add(4536)
-      aSet.add(87968)
-      aSet.add(5243654)
-      aSet.add(1123)
-      aSet.add(4536)
-      aSet.add(87968)
-      aSet.add(5243654)
-
-      expect( aSet.size() ).to.eql( 8 )
+      expect( aSet.size() ).to.eql( expectedSize )
     })
   })
 
@@ -183,7 +195,7 @@ describe('Set', () => {
   })
 
   context('clone()', () => {
-    it.only('returns a cloned set.', () => {
+    it('returns a cloned set.', () => {
       const aSet = new Set([])
 
       aSet.add('foo')
