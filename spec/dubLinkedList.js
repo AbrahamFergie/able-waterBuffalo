@@ -4,21 +4,25 @@ import DoublyLinkedList from '../src/dubLinkedList'
 
 chai.use(chaiChange)
 
-describe.only('DoublyLinkedList', () => {
+describe('DoublyLinkedList', () => {
   it('exists', () => {
     expect(DoublyLinkedList).to.be.a('function')
   })
 
   context('insert()', () => {
     it('Inserts a node (with the provided data) to the tail of the list', () => {
-      const list = new LinkedList()
+      const list = new DoublyLinkedList()
 
-      expect( list.insert('element') ).to.eql( { data:'element', next: null } )
+      list.insert('element')
+      list.insert('other-element')
+      list.insert('another-element')
+
+      expect( list.find('another-element') ).to.eql( list.getTailNode() )
     })
   })
   context('insertFirst()', () => {
     it('Inserts a node (with the provided data) to the head of the list', () => {
-      const list = new LinkedList()
+      const list = new DoublyLinkedList()
 
       list.insert('element')
       list.insert('other-element')
@@ -32,7 +36,7 @@ describe.only('DoublyLinkedList', () => {
   })
   context('insertBefore()', () => {
     it('Inserts a node (with data "apples") before the first node containing "bananas"', () => {
-      const list = new LinkedList()
+      const list = new DoublyLinkedList()
 
       list.insert('element')
       list.insert('other-element')
@@ -49,7 +53,7 @@ describe.only('DoublyLinkedList', () => {
   })
   context('insertAfter()', () => {
     it('Inserts a node (with data "bananas") after the first node containing "apples"', () => {
-      const list = new LinkedList()
+      const list = new DoublyLinkedList()
 
       list.insert('element')
       list.insert('other-element')
@@ -66,7 +70,7 @@ describe.only('DoublyLinkedList', () => {
   })
   context('remove()', () => {
     it('Removes the tail node from the list', () => {
-      const list = new LinkedList()
+      const list = new DoublyLinkedList()
 
       list.insert('element')
       list.insert('other-element')
@@ -81,7 +85,7 @@ describe.only('DoublyLinkedList', () => {
   })
   context('removeFirst()', () => {
     it('Removes the head node from the list', () => {
-      const list = new LinkedList()
+      const list = new DoublyLinkedList()
 
       list.insert('element')
       list.insert('other-element')
