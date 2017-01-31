@@ -14,7 +14,6 @@ Lisa Brown, Sal Soloman, Abraham Ferguson
   - Binary Search Tree
   - Directed Graph
 
-
 # Core Data Structures
 
 Tests and implementations for common data structures.
