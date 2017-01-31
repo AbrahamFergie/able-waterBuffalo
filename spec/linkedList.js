@@ -50,7 +50,7 @@ describe('linkedList', () => {
       myLinkedList.insert( 'steel' )
       myLinkedList.insert( 'atom' )
       myLinkedList.insert('lions')
-      expect(myLinkedList.contains( 'atom' )).to.be.true
+      expect(myLinkedList.contains( 'lions' )).to.be.true
     })
   })
   context('find()', () => {
@@ -67,7 +67,7 @@ describe('linkedList', () => {
     })
   })
   context('insertFirst()', () => {
-    it.only('Inserts a node (with the provided data) to the head of the list', () => {
+    it('Inserts a node (with the provided data) to the head of the list', () => {
       const myLinkedList = new linkedList()
       myLinkedList.insert( 'muffin' )
       myLinkedList.insert( 'steel' )
@@ -79,4 +79,82 @@ describe('linkedList', () => {
       expect(myLinkedList._length).to.eql(3)
     })
   })
+  context('insertBefore()', () => {
+    it('Inserts a node (with data "glasses") before the first node containing "atom"', () => {
+      const myLinkedList = new linkedList()
+      myLinkedList.insert( 'muffin' )
+      myLinkedList.insert( 'steel' )
+      myLinkedList.insert( 'atom' )
+      myLinkedList.insert('lions')
+      expect(myLinkedList._length).to.eql(4)
+      expect(myLinkedList.insertBefore('atom', 'glasses').next.data).to.eql('atom')
+      expect(myLinkedList._length).to.eql(5)
+    })
+  })
+  context('insertAfter()', () => {
+    it('Inserts a node (with data "glasses") after the first node containing "atom"', () => {
+      const myLinkedList = new linkedList()
+      myLinkedList.insert( 'muffin' )
+      myLinkedList.insert( 'steel' )
+      myLinkedList.insert( 'atom' )
+      myLinkedList.insert('lions')
+      expect(myLinkedList._length).to.eql(4)
+      expect(myLinkedList.insertAfter('atom', 'glasses').next.data).to.eql('lions')
+      expect(myLinkedList._length).to.eql(5)
+    })
+  })
+  context('remove()', () => {
+    it('Removes the tail node from the list', () => {
+      const myLinkedList = new linkedList()
+      myLinkedList.insert( 'muffin' )
+      myLinkedList.insert( 'steel' )
+      myLinkedList.insert( 'atom' )
+      myLinkedList.insert('lions')
+      expect(myLinkedList._length).to.eql(4)
+      myLinkedList.remove('lions')
+      console.log('---------', myLinkedList);
+      expect(myLinkedList._length).to.eql(3)
+    })
+  })
+  context('removesFirst()', () => {
+    it('Removes the head node from the list', () => {
+      const myLinkedList = new linkedList()
+      myLinkedList.insert( 'muffin' )
+      myLinkedList.insert( 'steel' )
+      myLinkedList.insert( 'atom' )
+      myLinkedList.insert('lions')
+      expect(myLinkedList._length).to.eql(4)
+      myLinkedList.removesFirst()
+      console.log('---------', myLinkedList);
+      expect(myLinkedList.head.data).to.eql('steel')
+      expect(myLinkedList._length).to.eql(3)
+    })
+  })
+  context('isEmpty()', () => {
+    it('Determines if the list is empty or not', () => {
+      const myLinkedList = new linkedList()
+      expect(myLinkedList.isEmpty()).to.be.true
+      myLinkedList.insert( 'muffin' )
+      myLinkedList.insert( 'steel' )
+      myLinkedList.insert( 'atom' )
+      myLinkedList.insert('lions')
+      expect(myLinkedList.isEmpty()).to.be.false
+    })
+  })
+  context('clears()', () => {
+    it.only('Clears the list of all nodes/data', () => {
+      const myLinkedList = new linkedList()
+      myLinkedList.insert( 'muffin' )
+      myLinkedList.insert( 'steel' )
+      myLinkedList.insert( 'atom' )
+      myLinkedList.insert('lions')
+      console.log('!!!!=========', myLinkedList)
+
+      myLinkedList.clears()
+      console.log('=========', myLinkedList)
+      expect(myLinkedList.head).to.eql(null)
+      expect(myLinkedList.isEmpty()).to.be.true
+    })
+  })
+
 })
