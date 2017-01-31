@@ -80,5 +80,4 @@ describe('linkedList', () => {
       expect(myLinkedList._length).to.eql(3)
     })
   })
-  
 })
