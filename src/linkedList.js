@@ -16,7 +16,7 @@ export default class linkedList {
     let node = new Node(data)
 
     if(this.head === null){
-      this._length++
+      ++this._length
       return this.head = this.tail = node
     }
     let currentNode = this.head
@@ -24,8 +24,8 @@ export default class linkedList {
     while(currentNode.next){
       currentNode = currentNode.next
     }
-    this._length++
-    currentNode.next = node
+      ++this._length
+      currentNode.next = node
     return this.tail = node
   }
   size() { return this._length }
@@ -54,4 +54,15 @@ export default class linkedList {
     }
     return -1
   }
+
+  insertFirst(data) {
+    let node = new Node(data)
+    ++this._length
+    node.next = this.head
+    this.head = node
+  }
+
+
+
+
 }
