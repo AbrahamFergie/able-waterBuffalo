@@ -40,7 +40,6 @@ describe('linkedList', () => {
       myLinkedList.insert( 'steel' )
       myLinkedList.insert( 'atom' )
       myLinkedList.insert( 'giraffe' )
-
       expect(myLinkedList.getTailNode()).to.eql({data: 'giraffe', next: null})
     })
   })
