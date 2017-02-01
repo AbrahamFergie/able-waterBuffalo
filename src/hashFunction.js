@@ -7,9 +7,9 @@ export default const hashFunction = (key, value) => {
 
 
 
-hashTable = {
+hashTable = [
   {name: 'sal', next:{ name: 'abe', next: null }},
   {age: 1, next:{ age: 2, next: null }},
   {height: 1, next:{ height: 2, next: null }},
   {gender: 1, next:{gender: 4, next: null }}
-}
+]
