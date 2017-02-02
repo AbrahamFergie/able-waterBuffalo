@@ -55,14 +55,51 @@ export default class linkedList {
     return -1
   }
 
-  insertFirst(data) {
+
+  insertBefore(before, data) {
     let node = new Node(data)
+    let currentNode = this.head
+    while(currentNode.next.data !== before) {
+      currentNode = currentNode.next
+    }
     ++this._length
-    node.next = this.head
-    this.head = node
+    node.next = currentNode.next
+    return currentNode.next = node
   }
 
+  insertAfter(after, data) {
+    let node = new Node(data)
+    let currentNode = this.head
+    while(currentNode.data !== after) {
+      currentNode = currentNode.next
+    }
+    ++this._length
+    node.next = currentNode.next
+    return currentNode.next = node
+  }
 
+  remove(data) {
+    let currentNode = this.head
+    while(currentNode.next.data === data) {
+      currentNode = currentNode.next
+    }
+    --this._length
+    return currentNode.next = this.tail = null
+    // delete this.tail
+  }
 
+  removesFirst() {
+    let currentNode = this.head
+    this.head = currentNode.next
+    --this._length
+  }
 
+  isEmpty() {
+    return this._length === 0 ? true : false
+  }
+
+  clears() {
+    this.head = this.tail =  null
+    this._length = 0
+  }
 }
