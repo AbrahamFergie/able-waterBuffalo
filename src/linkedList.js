@@ -28,6 +28,7 @@ export default class linkedList {
       currentNode.next = node
     return this.tail = node
   }
+  
   size() { return this._length }
 
   getHeadNode(){ return this.head }
