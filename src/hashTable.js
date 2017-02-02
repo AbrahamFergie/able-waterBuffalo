@@ -63,7 +63,24 @@ export default class HashTable {
 
   contains(key) {
     var hash = this.hashFunction(key)
-    return this.dataStore[hash] ? true : false
+    //go through each of the nodes in the linked list at key location
+    let currentNode = this.dataStore[hash]
+    if(this.dataStore[hash]){
+      if(currentNode.key === key){
+        return true
+      }else {
+        while(currentNode.next){
+          if(currentNode.key === key){
+            return true
+          }else {
+            currentNode = currentNode.next
+          }
+        }
+      }
+      if(currentNode.key === key){
+        return true
+      }else { return false }
+    }else{ return false }
   }
 
   pushy(arr, key, value) {
@@ -87,13 +104,30 @@ export default class HashTable {
 
   remove(key) {
     let hashed = this.hashFunction(key)
+    let chainLinks
     if (this.dataStore[hashed]) {
       let currentNode = this.dataStore[hashed]
-      while (currentNode.next){
-        if (currentNode.key === key) {
-          delete currentNode.key
-        }else {
-          currentNode = currentNode.next
+      if(currentNode.key === key){
+        chainLinks = currentNode.next
+        delete this.dataStore[hashed]
+        --this._length
+        this.dataStore[hashed] = chainLinks
+      }else {
+        while (currentNode.next){
+          if (currentNode.next.key === key) {
+            chainLinks = currentNode.next.next
+            delete currentNode.next
+            --this._length
+            currentNode.next = chainLinks
+          }else {
+            currentNode = currentNode.next
+          }
+        }
+        if(currentNode.key === key){
+          chainLinks = currentNode.next
+          delete this.dataStore[hashed]
+          --this._length
+          this.dataStore[hashed] = chainLinks
         }
       }
     }

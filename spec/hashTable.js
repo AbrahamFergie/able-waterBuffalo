@@ -4,7 +4,7 @@ import HashTable from '../src/hashTable'
 
 chai.use(chaiChange)
 
-describe.only('hashTable', () => {
+describe('hashTable', () => {
   it('exists', () => {
     expect(HashTable).to.be.a('function')
   })
@@ -29,9 +29,15 @@ describe.only('hashTable', () => {
     })
   })
   context('remove()', () => {
-    it('removes a key-value pair by key.', () => {
+    it.only('removes a key-value pair by key.', () => {
       const ht = new HashTable()
-      ht.remove('')
+      ht.put('name', 'frankenstein')
+      ht.put('19.0', 'stein')
+      ht.put('wsrd', 'the weekend')
+      ht.remove('19.0')
+      console.log('just removed 19.0', ht.dataStore);
+      expect(ht.size()).to.equal(2)
+      expect(ht.contains('19.0')).to.be.false
     })
   })
   context('iterate()', () => {
