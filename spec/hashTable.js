@@ -29,7 +29,7 @@ describe('hashTable', () => {
     })
   })
   context('remove()', () => {
-    it.only('removes a key-value pair by key.', () => {
+    it('removes a key-value pair by key.', () => {
       const ht = new HashTable()
       ht.put('name', 'frankenstein')
       ht.put('19.0', 'stein')
