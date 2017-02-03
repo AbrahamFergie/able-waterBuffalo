@@ -1,5 +1,5 @@
 #Team able-waterBuffalo -
-Lisa Brown, Sal Soloman, Abraham Ferguson
+Lisa Bronwyn, Sal Soloman, Abraham Ferguson
 
 #Goals:
 - We will Write Test cases for each data structure and develop code to pass said tests.  All created through the javascript language.
