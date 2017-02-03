@@ -142,7 +142,7 @@ describe('linkedList', () => {
     })
   })
   context('clears()', () => {
-    it.only('Clears the list of all nodes/data', () => {
+    it('Clears the list of all nodes/data', () => {
       const myLinkedList = new linkedList()
       myLinkedList.insert( 'muffin' )
       myLinkedList.insert( 'steel' )
