@@ -13,7 +13,10 @@ Lisa Brown, Sal Soloman, Abraham Ferguson
   - Hash Table
   - Binary Search Tree
   - Directed Graph
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 # Core Data Structures
 
 Tests and implementations for common data structures.
