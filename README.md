@@ -4,6 +4,7 @@ Lisa Brown, Sal Soloman, Abraham Ferguson
 #Goals:
 - We will Write Test cases for each data structure and develop code to pass said tests.  All created through the javascript language.
 - Because each group member has done this project before we will be doing deeper dives on the last 5 data structures in order to further our understanding.
+
   X- Stack
   X- Queue
   X- Priority Queue
