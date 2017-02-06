@@ -7,7 +7,7 @@ export default class DirectedGraph {
   makeGraph(){
     for( let i = 0; i < this.vertices; ++i ) {
       this.edges[i] = []
-      this.edges[i].push()
+      this.edges[i].push(i)
     }
   }
 
